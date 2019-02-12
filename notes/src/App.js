@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import logo from './logo.svg';
-import './App.css';
+import NotesList from './Components/NotesList';
+// import './App.css';
 
 class App extends Component {
   render() {
@@ -9,6 +9,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         </header>
+        <NotesList />
       </div>
     );
   }
