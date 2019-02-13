@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import MainView from './Components/MainView';
+import SideNav from './Components/SideNav';
+
 // import './App.css';
 
 class App extends Component {
@@ -10,6 +12,7 @@ class App extends Component {
         <header className="App-header">
         React Notes App!
         </header>
+        <SideNav />
         <MainView />
       </div>
     );
