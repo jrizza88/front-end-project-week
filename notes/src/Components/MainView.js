@@ -14,7 +14,13 @@ class MainView extends Component {
     componentDidMount(){
         axios.
         get(`https://fe-notes.herokuapp.com/note/get/all`)
-        .then(response => console.log(response))
+        .then(response => {
+            console.log('response', response)
+           this.setState({notes:  response.data})
+        })
+        .catch(error => {
+            console.error("error occured!", error)
+        })
     }
 
     render(){
