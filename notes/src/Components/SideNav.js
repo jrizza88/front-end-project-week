@@ -17,6 +17,7 @@ export default SideNav;
 
 const SideNavContainer = styled.section`
     display: flex;
+    flex-grow: 1;
     background-color: lightgray;
     max-width: 250px;
     width: 100%;
@@ -25,6 +26,7 @@ const SideNavContainer = styled.section`
 
 const ContentWrapper = styled.section`
 display: flex;
+flex-grow;
 flex-direction: column;
 margin: 0 10%;
 `

@@ -17,7 +17,7 @@ const NoteList = props => {
             <NotePageContainer>
                 <WrapContent>
                     <NoteListHeader> Your Notes: </NoteListHeader>
-                    <NoteContainer>
+                    <NoteCard>
                         {props.notes.map( note => {
                             return (
                             <div style={NoteInfo} key={note._id}>
@@ -33,7 +33,7 @@ const NoteList = props => {
                             </div>
                         )})
                         }
-                    </NoteContainer>
+                    </NoteCard>
                 </WrapContent>
             </NotePageContainer>
         );
@@ -58,7 +58,7 @@ const NoteListHeader = styled.div`
     display: flex;
 `
 
-const NoteContainer = styled.section`
+const NoteCard= styled.section`
     display: flex;
     flex-direction: row;
     justify-content: center;
