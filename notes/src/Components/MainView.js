@@ -59,8 +59,8 @@ class MainView extends Component {
     render(){
         return (
             <MainViewContainer>
-                <NoteView />
-                <NewNote addNote={this.postNote}/>
+                {/* <NoteView />
+                <NewNote addNote={this.postNote}/> */}
                 <NoteList  notes={this.state.notes}/>
             </MainViewContainer>
         )
@@ -72,8 +72,11 @@ export default MainView;
 
 const MainViewContainer = styled.section`
 display: flex;
+background-color: whitesmoke;
 flex-direction: row;
-max-width: 750px;
+// max-width: 750px;
 width: 100%;
+height: 100vh;
 justify-content: space-around;
+align-items: flex-start;
 `

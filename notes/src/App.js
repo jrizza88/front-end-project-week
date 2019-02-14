@@ -22,6 +22,7 @@ export default App;
 const Container = styled.div`
 display: flex;
 align-items: center;
+justify-content: space-between;
 max-width: 100%;
 width: 100%;
 `
