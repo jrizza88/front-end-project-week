@@ -8,15 +8,20 @@ import SideNav from './Components/SideNav';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        React Notes App!
-        </header>
+      <Container>
         <SideNav />
         <MainView />
-      </div>
+      </Container>
     );
   }
 }
 
 export default App;
+
+
+const Container = styled.div`
+display: flex;
+align-items: center;
+max-width: 100%;
+width: 100%;
+`

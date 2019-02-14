@@ -6,9 +6,9 @@ const NoteList = props => {
         return (
             <div>
                 <div>
-                    {props.notes.map( (note, index)=> {
+                    {props.notes.map( note => {
                         return (
-                        <div key={index}>
+                        <div key={note._id}>
                             <div>
                                 {note.tags}
                             </div>
@@ -20,7 +20,7 @@ const NoteList = props => {
                             </div>
                         </div>
                     )})
-                    };
+                    }
                 </div>
             </div>
         );

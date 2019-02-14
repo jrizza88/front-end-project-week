@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import NoteList from './NoteList';
 import NoteView from './NoteView';
 import NewNote from './NewNote';
@@ -9,6 +10,7 @@ class MainView extends Component {
         super();
         this.state = {
             notes: [{
+                _id: null,
                 tags: [],
                 title: '',
                 textBody: ''
@@ -30,7 +32,7 @@ class MainView extends Component {
 
     viewOneNote = id => {
         axios
-        .get(`https://fe-notes.herokuapp.com/note/get/id`)
+        .get(`https://fe-notes.herokuapp.com/note/get/id`, id)
         .then(response => {
             console.log('response', response)
             this.setState({notes:  response.data})
@@ -44,7 +46,8 @@ class MainView extends Component {
         axios
         .post(`https://fe-notes.herokuapp.com/note/create`, create)
         .then(response => {
-            this.setState({ notes:  response.data.success})
+            console.log('POST request response', response)
+            this.setState({ _id:  response.data.success})
         })
         .catch(error => {
             console.error("error occured!", error)
@@ -55,11 +58,11 @@ class MainView extends Component {
 
     render(){
         return (
-            <div>
+            <MainViewContainer>
                 <NoteView />
-                <NewNote {...this.props} addNote={this.postNote}/>
-                <NoteList {...this.props} notes={this.state.notes}/>
-            </div>
+                <NewNote addNote={this.postNote}/>
+                <NoteList  notes={this.state.notes}/>
+            </MainViewContainer>
         )
     }
 }
@@ -67,4 +70,10 @@ class MainView extends Component {
 export default MainView;
 
 
-
+const MainViewContainer = styled.section`
+display: flex;
+flex-direction: row;
+max-width: 750px;
+width: 100%;
+justify-content: space-around;
+`
