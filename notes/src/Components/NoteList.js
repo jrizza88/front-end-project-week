@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import NoteView from './NoteView';
 import { Link } from 'react-router-dom';
 
 let NoteInfo = {
@@ -14,31 +15,34 @@ let NoteInfo = {
 }
 
 const NoteList = props => {
-        return (
-            <NotePageContainer>
-                <WrapContent>
-                    <NoteListHeader> Your Notes: </NoteListHeader>
-                    <Link to="/viewNote"><NoteCard> 
-                        {props.notes.map( note => {
-                            return (
-                            <div style={NoteInfo} key={note._id}>
-                                <div>
-                                    {note.tags}
-                                </div>
-                                <NoteTitle>
-                                    {note.title}
-                                </NoteTitle>
-                                <NoteBody>
-                                    {note.textBody}
-                                </NoteBody>
+    return (
+        <NotePageContainer>
+            <WrapContent>
+                <NoteListHeader> Your Notes: </NoteListHeader>
+               <NoteCard> 
+                    {props.notes.map( note => {
+                        return (
+                      <div style={NoteInfo} key={note._id}>
+                             <Link to={`/viewNote/${note._id}`} component={NoteView}> 
+                             
+                            <div>
+                                {note.tags}
                             </div>
-                        )})
-                        }
-                    </NoteCard></Link>
-                </WrapContent>
-            </NotePageContainer>
-        );
-    };
+                            <NoteTitle>
+                                {note.title}
+                            </NoteTitle>
+                            <NoteBody>
+                                {note.textBody}
+                            </NoteBody>
+                        </Link>
+                    </div> 
+                    )})
+                    }
+                </NoteCard>
+            </WrapContent>
+        </NotePageContainer>
+    );
+};
 
 export default NoteList; 
 

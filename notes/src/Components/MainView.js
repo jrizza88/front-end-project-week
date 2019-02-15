@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
 // Components 
 import NoteList from './NoteList';
@@ -36,9 +36,9 @@ class MainView extends Component {
 
     viewOneNote = id => {
         axios
-        .get(`https://fe-notes.herokuapp.com/note/get/id`, id)
+        .get(`https://fe-notes.herokuapp.com/note/get/${this.props.match.params._id}`)
         .then(response => {
-            console.log('response', response)
+            console.log('one note view', response.data)
             this.setState({notes:  response.data})
         })
         .catch(error => {
@@ -63,7 +63,8 @@ class MainView extends Component {
     render(){
         return (
             <MainViewContainer>
-                <Route path="/viewNote" component={NoteView} />
+                        <Route path="/viewNote/:id" render={props => <NoteView {...props} indNote={this.viewOneNote} notes={this.state.notes}/>} />
+        {/* <Route path="/viewNote/:id" render={props => <NoteView {...props} indNote={this.viewOneNote} notes={this.state.notes}/>} /> */}
         <Route path ="/addNote" render={props => <NewNote addNote={this.postNote} /> } />
         <Route exact path="/" render={props => <NoteList {...props} notes={this.state.notes}/> } />
             </MainViewContainer>

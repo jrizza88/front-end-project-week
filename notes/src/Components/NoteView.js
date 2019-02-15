@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+// import NoteList from './NoteList';
 
 class NoteView extends Component {
     constructor(props){
         super(props);
         this.state = {
-            note: {
-                tags: [],
-                title: '',
-                textBody: ''
-            }
+            notedata: {}
         }
     }
 
-    
 
+    componentDidMount() {
+        let theId;
+
+        if (this.props.noteId) {
+            theId = this.props.noteId;
+        } else {
+            theId = this.props.match.params.noteId;
+        }
+        const indNote = this.props.notes.find(note => note._id === Number(theId));
+        if (!indNote) return;
+        this.setState({note: indNote})
+console.log("indNote", indNote);
+    }
+
+
+    
         render(){
+            const {  title, textBody} = this.state.notedata;
             return (
-                <div> <Link to="/viewNote">Individual Note view</Link>
-                   <div><Link exact to="/viewNote/:id">ok..</Link></div> 
+                <div> 
+                    <h2>Individual Note view</h2>
+                   <div>
+                  
+                                <h1>{title}</h1>
+                                <div>{textBody}</div>
+                  
+
+                   </div> 
                 </div>
-            )
+            );
         }
 
 }
