@@ -63,7 +63,7 @@ class MainView extends Component {
     render(){
         return (
             <MainViewContainer>
-                {/* <NoteView />*/}
+                <Route path="/viewNote" component={NoteView} />
         <Route path ="/addNote" render={props => <NewNote addNote={this.postNote} /> } />
         <Route exact path="/" render={props => <NoteList {...props} notes={this.state.notes}/> } />
             </MainViewContainer>
@@ -79,6 +79,7 @@ display: flex;
 background-color: whitesmoke;
 flex-direction: row;
 // max-width: 750px;
+margin-left: 25%;
 width: 100%;
 height: 100vh;
 justify-content: space-around;

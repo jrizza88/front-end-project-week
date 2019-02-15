@@ -18,6 +18,7 @@ export default SideNav;
 
 const SideNavContainer = styled.section`
     display: flex;
+    position: fixed;
     flex-grow: 1;
     background-color: lightgray;
     max-width: 250px;

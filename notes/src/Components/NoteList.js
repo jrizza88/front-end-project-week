@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 let NoteInfo = {
     display: 'flex',
@@ -17,7 +18,7 @@ const NoteList = props => {
             <NotePageContainer>
                 <WrapContent>
                     <NoteListHeader> Your Notes: </NoteListHeader>
-                    <NoteCard>
+                    <Link to="/viewNote"><NoteCard> 
                         {props.notes.map( note => {
                             return (
                             <div style={NoteInfo} key={note._id}>
@@ -33,7 +34,7 @@ const NoteList = props => {
                             </div>
                         )})
                         }
-                    </NoteCard>
+                    </NoteCard></Link>
                 </WrapContent>
             </NotePageContainer>
         );

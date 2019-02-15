@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom';
 
 class NoteView extends Component {
     constructor(props){
@@ -17,8 +17,8 @@ class NoteView extends Component {
 
         render(){
             return (
-                <div>
-                    Individual Note view
+                <div> <Link to="/viewNote">Individual Note view</Link>
+                   <div><Link exact to="/viewNote/:id">ok..</Link></div> 
                 </div>
             )
         }
