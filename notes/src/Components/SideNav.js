@@ -1,13 +1,14 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 const SideNav = props => {
 return (
     <SideNavContainer>
         <ContentWrapper>
-            <SideHeader>Lambda Notes</SideHeader>
-            <ViewNotesButton>View Your Notes </ViewNotesButton>
-            <CreateNewNoteButton>+ Create New Note</CreateNewNoteButton> 
+            <SideHeader><Link to={"/"}>Lambda Notes</Link></SideHeader>
+            <ViewNotesButton><Link to={"/"}>View Your Notes</Link> </ViewNotesButton>
+            <CreateNewNoteButton><Link to={"/addNote"}>+ Create New Note</Link></CreateNewNoteButton> 
         </ContentWrapper>
     </SideNavContainer>
     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import {Route} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 
 // Components 
 import NoteList from './NoteList';
@@ -64,8 +64,8 @@ class MainView extends Component {
         return (
             <MainViewContainer>
                 {/* <NoteView />*/}
-                <NewNote addNote={this.postNote}/>
-                <Route exact path="/" render={props => <NoteList {...props} notes={this.state.notes}/> } />
+        <Route path ="/addNote" render={props => <NewNote addNote={this.postNote} /> } />
+        <Route exact path="/" render={props => <NoteList {...props} notes={this.state.notes}/> } />
             </MainViewContainer>
         )
     }

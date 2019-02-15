@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <Route exact path="/" component={SideNav} />
+        <Route path="/" component={SideNav} />
         <MainView />
       </Container>
     );
