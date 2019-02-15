@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import {Route} from 'react-router-dom';
+
+// Components 
 import NoteList from './NoteList';
 import NoteView from './NoteView';
 import NewNote from './NewNote';
-import axios from 'axios';
+
 
 class MainView extends Component {
     constructor(){
@@ -59,9 +63,9 @@ class MainView extends Component {
     render(){
         return (
             <MainViewContainer>
-                {/* <NoteView />
-                <NewNote addNote={this.postNote}/> */}
-                <NoteList  notes={this.state.notes}/>
+                {/* <NoteView />*/}
+                <NewNote addNote={this.postNote}/>
+                <Route exact path="/" render={props => <NoteList {...props} notes={this.state.notes}/> } />
             </MainViewContainer>
         )
     }

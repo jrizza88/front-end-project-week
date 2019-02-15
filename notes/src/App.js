@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Route} from 'react-router-dom';
 import styled from 'styled-components';
 import MainView from './Components/MainView';
 import SideNav from './Components/SideNav';
@@ -9,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <SideNav />
+        <Route exact path="/" component={SideNav} />
         <MainView />
       </Container>
     );
