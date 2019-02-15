@@ -21,8 +21,9 @@ class NoteView extends Component {
         }
         const indNote = this.props.notes.find(note => note._id === Number(theId));
         if (!indNote) return;
-        this.setState({note: indNote})
+        this.setState({notedata: indNote})
 console.log("indNote", indNote);
+
     }
 
 
