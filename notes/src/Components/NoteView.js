@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+
 // import NoteList from './NoteList';
 
 class NoteView extends Component {
@@ -11,18 +11,15 @@ class NoteView extends Component {
   }
 
   componentDidMount() {
-    let theId;
+    let theId = this.props.match.params._id;
+    console.log(this.props.match.params);
 
-    if (this.props.noteId) {
-      theId = this.props.noteId;
-    } else {
-      theId = this.props.match.params.noteId;
-    }
-    const indNote = this.props.notes.find(note => note.id === theId);
+    const indNote = this.props.notes.find(note => note._id === theId);
+    console.log(indNote);
     if (!indNote) return;
     this.setState({ notedata: indNote });
-    console.log("indNote", indNote);
-    console.log(this.state.notedata);
+    // console.log("indNote", indNote);
+    // console.log(this.state.notedata);
   }
 
   render() {

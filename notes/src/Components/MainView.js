@@ -41,7 +41,7 @@ class MainView extends Component {
       .then(response => {
         console.log("one note view", response.data);
         console.log("ID", _id);
-        this.setState({ notes: response.data.success });
+        this.setState({ _id: response.data.success });
       })
       .catch(error => {
         console.error("error occured!", error);
