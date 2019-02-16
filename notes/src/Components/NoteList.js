@@ -11,7 +11,8 @@ let NoteInfo = {
   width: "20%",
   height: "200px",
   margin: "5% 2.5%",
-  padding: "1% 1.5%"
+  padding: "1% 1.5%",
+
 };
 
 const NoteList = props => {
@@ -23,12 +24,11 @@ const NoteList = props => {
           {props.notes.map(note => {
             return (
               <div style={NoteInfo} key={note._id}>
-                <Link to={`/viewNote/${note._id}`} component={NoteView}>
-                  {/* <NoteView key={note._id} noteId={note._id}/> */}
-                  <div>{note.tags}</div>
-                  <NoteTitle>{note.title}</NoteTitle>
-                  <NoteBody>{note.textBody}</NoteBody>
-                </Link>
+                <StyledLink to={`/viewNote/${note._id}`} component={NoteView}>
+                    <div>{note.tags}</div>
+                    <NoteTitle>{note.title}</NoteTitle>
+                    <NoteBody>{note.textBody}</NoteBody>
+                </StyledLink>
               </div>
             );
           })}
@@ -55,6 +55,7 @@ const WrapContent = styled.div`
 
 const NoteListHeader = styled.div`
   display: flex;
+  text-decoration: none;
 `;
 
 const NoteCard = styled.section`
@@ -64,6 +65,7 @@ const NoteCard = styled.section`
   align-items: center;
   flex-wrap: wrap;
   height: 20vh;
+  text-decoration: none;
 `;
 
 const NoteTitle = styled.div`
@@ -74,6 +76,7 @@ const NoteTitle = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-decoration: none;
 `;
 
 const NoteBody = styled.div`
@@ -87,5 +90,14 @@ line-height: 2;
 -webkit-box-orient: vertical;
 overflow: hidden;
 text-overflow: ellipsis;
-}
+text-decoration: none;
 `;
+
+const StyledLink = styled(Link)`
+    color: inherit;
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`

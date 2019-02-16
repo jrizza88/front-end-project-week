@@ -73,10 +73,9 @@ class MainView extends Component {
             />
           )}
         />
-        {/* <Route path="/viewNote/:id" render={props => <NoteView {...props} indNote={this.viewOneNote} notes={this.state.notes}/>} /> */}
         <Route
           path="/addNote"
-          render={props => <NewNote addNote={this.postNote} />}
+          render={props => <NewNote {...props} addNote={this.postNote} />}
         />
         <Route
           exact
@@ -100,4 +99,5 @@ const MainViewContainer = styled.section`
   height: 100vh;
   justify-content: space-around;
   align-items: flex-start;
+
 `;

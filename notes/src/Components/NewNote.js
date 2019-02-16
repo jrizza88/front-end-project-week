@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+// const home = props => {
+//     props.history.push('/')
+// }
 
 class NewNote extends Component {
     constructor(props){
@@ -33,7 +36,10 @@ class NewNote extends Component {
                 textBody: ''
             }
         })
+        this.props.history.push('/')
     }
+
+  
 
         render(){
             return (
@@ -52,12 +58,13 @@ class NewNote extends Component {
                             onChange={this.handleSubmit}
                             value={this.state.note.textBody}
                         />
-                        <button type="submit">Save</button>
+                        <button type="submit" >Save</button>
                     </form>
                 </div>
             )
         }
 
 }
+
 
 export default NewNote;
