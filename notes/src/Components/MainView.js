@@ -7,6 +7,7 @@ import { Route } from "react-router-dom";
 import NoteList from "./NoteList";
 import NoteView from "./NoteView";
 import NewNote from "./NewNote";
+import EditNote from "./EditNote";
 
 class MainView extends Component {
   constructor() {
@@ -31,7 +32,7 @@ class MainView extends Component {
         this.setState({ notes: response.data });
       })
       .catch(error => {
-        console.error("error occured!", error);
+        console.error("GET error occured!", error);
       });
   }
 
@@ -44,7 +45,7 @@ class MainView extends Component {
         this.setState({ _id: response.data.success });
       })
       .catch(error => {
-        console.error("error occured!", error);
+        console.error("GET ID error occured!", error);
       });
   };
 
@@ -53,10 +54,25 @@ class MainView extends Component {
       .post(`https://fe-notes.herokuapp.com/note/create`, create)
       .then(response => {
         console.log("POST request response", response);
-        this.setState({ _id: response.data.success });
+        this.setState({ notes: response.data.success });
       })
       .catch(error => {
-        console.error("error occured!", error);
+        console.error("POST error occured!", error);
+      });
+  };
+
+  editNote = (note, _id) => {
+      console.log('PUT note', note)
+      axios.
+      put(`https://fe-notes.herokuapp.com/note/edit/${_id}`, note)
+      .then(response => {
+          this.props.history.push('/');
+          console.log("PUT/UPDATE req response: ", response)
+          console.log("PUT/UPDATE ID: ", _id)
+          this.setState({notes: response.data.success});
+      })
+      .catch(error => {
+            console.log("PUT/UPDATE req error", error)
       });
   };
 
@@ -64,17 +80,23 @@ class MainView extends Component {
     return (
       <MainViewContainer>
         <Route
-          path="/viewNote/:_id"
+          exact path="/viewNote/:_id"
           render={props => (
             <NoteView
               {...props}
               indNote={this.viewOneNote}
               notes={this.state.notes}
+              editNoteHandler={this.editNote}
             />
           )}
         />
+        { <Route
+         exact path="/editNote/:note_id"
+          render={props => <EditNote {...props}  notes={this.state.notes}
+          editNoteHandler={this.editNote} />}
+        /> }
         <Route
-          path="/addNote"
+         exact path="/addNote"
           render={props => <NewNote {...props} addNote={this.postNote} />}
         />
         <Route
@@ -99,5 +121,4 @@ const MainViewContainer = styled.section`
   height: 100vh;
   justify-content: space-around;
   align-items: flex-start;
-
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import NoteView from "./NoteView";
 import { Link } from "react-router-dom";
 
-let NoteInfo = {
+const NoteInfo = {
   display: "flex",
   flexDirection: "column",
   backgroundColor: "white",
@@ -12,7 +12,6 @@ let NoteInfo = {
   height: "200px",
   margin: "5% 2.5%",
   padding: "1% 1.5%",
-
 };
 
 const NoteList = props => {
@@ -20,7 +19,7 @@ const NoteList = props => {
     <NotePageContainer>
       <WrapContent>
         <NoteListHeader> Your Notes: </NoteListHeader>
-        <NoteCard>
+        <NoteCard >
           {props.notes.map(note => {
             return (
               <div style={NoteInfo} key={note._id}>

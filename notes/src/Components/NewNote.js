@@ -9,6 +9,7 @@ class NewNote extends Component {
         super(props);
         this.state = {
             note: {
+                _id: null,
                 tags: [],
                 title: '',
                 textBody: ''
@@ -18,6 +19,7 @@ class NewNote extends Component {
 
 
     handleSubmit = e => {
+        
         this.setState({
             note: {
             ...this.state.note,
