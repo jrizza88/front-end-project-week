@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from 'react-router-dom';
 
 // Components
 import NoteList from "./NoteList";
@@ -36,6 +36,39 @@ class MainView extends Component {
       });
   }
 
+  
+  postNote = (create) => {
+    axios
+      .post(`https://fe-notes.herokuapp.com/note/create`, create)
+      .then(response => {
+        console.log("POST request response", response);
+        console.log("response.data", response.data)
+        this.setState({ notes: response.data.success});
+        // this.props.history.push('/')
+        window.location.reload()
+      })
+      .catch(error => {
+        console.error("POST error occured!", error);
+      });
+  };
+
+  editNote = (_id, note) => {
+    console.log("PUT note", note);
+    axios
+      .put(`https://fe-notes.herokuapp.com/note/edit/${_id}`, note)
+      .then(response => {
+        console.log("PUT/UPDATE req response: ", response);
+        console.log("PUT/UPDATE ID: ", _id);
+        // console.log(history);
+        this.props.history.push("/");
+        window.location.reload()
+        this.setState({ notes: response.data.success});
+      })
+      .catch(error => {
+        console.log("PUT/UPDATE req error", error);
+      });
+  };
+
   viewOneNote = _id => {
     axios
       .get(`https://fe-notes.herokuapp.com/note/get/${_id}`)
@@ -49,32 +82,6 @@ class MainView extends Component {
       });
   };
 
-  postNote = create => {
-    axios
-      .post(`https://fe-notes.herokuapp.com/note/create`, create)
-      .then(response => {
-        console.log("POST request response", response);
-        this.setState({ notes: response.data.success });
-      })
-      .catch(error => {
-        console.error("POST error occured!", error);
-      });
-  };
-
-  editNote = (note, _id) => {
-      console.log('PUT note', note)
-      axios.
-      put(`https://fe-notes.herokuapp.com/note/edit/${_id}`, note)
-      .then(response => {
-          this.props.history.push('/');
-          console.log("PUT/UPDATE req response: ", response)
-          console.log("PUT/UPDATE ID: ", _id)
-          this.setState({notes: response.data.success});
-      })
-      .catch(error => {
-            console.log("PUT/UPDATE req error", error)
-      });
-  };
 
   render() {
     return (
@@ -86,18 +93,17 @@ class MainView extends Component {
               {...props}
               indNote={this.viewOneNote}
               notes={this.state.notes}
-              editNoteHandler={this.editNote}
             />
           )}
         />
-        { <Route
-         exact path="/editNote/:note_id"
+        <Route
+         exact path="/editNote/:_id"
           render={props => <EditNote {...props}  notes={this.state.notes}
-          editNoteHandler={this.editNote} />}
-        /> }
+          editNote={this.editNote} />}
+        /> 
         <Route
          exact path="/addNote"
-          render={props => <NewNote {...props} addNote={this.postNote} />}
+          render={props => <NewNote {...props} addNote={this.postNote} notes={this.state.notes}/>}
         />
         <Route
           exact
@@ -109,7 +115,7 @@ class MainView extends Component {
   }
 }
 
-export default MainView;
+export default withRouter(MainView);
 
 const MainViewContainer = styled.section`
   display: flex;

@@ -14,6 +14,53 @@ const NoteInfo = {
   padding: "1% 1.5%",
 };
 
+// const NoteList = props => {
+//   return (
+//     <NotePageContainer>
+//       <WrapContent>
+//         <NoteListHeader> Your Notes: </NoteListHeader>
+//         <NoteCard >
+//           {props.notes.map(note => {
+//             return (
+//               <div style={NoteInfo} key={note._id}>
+//                 <StyledLink to={`/viewNote/${note._id}`} component={NoteView}>
+//                     {/* <div>{note.tags}</div> */}
+//                     <NoteTitle>{note.title}</NoteTitle>
+//                     <NoteBody>{note.textBody}</NoteBody>
+//                 </StyledLink>
+//               </div>
+//             );
+//           })}
+//         </NoteCard>
+//       </WrapContent>
+//     </NotePageContainer>
+//   );
+// };
+
+// const NoteList = props => {
+//   console.log("NoteList props", props)
+//   return (
+//     <NotePageContainer>
+//       <WrapContent>
+//         <NoteListHeader> Your Notes: </NoteListHeader>
+//         <NoteCard >
+//           {props.notes.map(note => {
+//             return (
+//               <NoteView 
+//               {...props}
+//               title={note.title}
+//               textBody={note.textBody}
+//               _id={note._id}
+//               key={note._id}
+//               />
+//             );
+//           })}
+//         </NoteCard>
+//       </WrapContent>
+//     </NotePageContainer>
+//   );
+// };
+
 const NoteList = props => {
   return (
     <NotePageContainer>
@@ -23,11 +70,14 @@ const NoteList = props => {
           {props.notes.map(note => {
             return (
               <div style={NoteInfo} key={note._id}>
-                <StyledLink to={`/viewNote/${note._id}`} component={NoteView}>
-                    <div>{note.tags}</div>
+
+                <StyledLink to={`/viewNote/${note._id}`} title={note.title}
+                textBody={note.textBody} _id={note._id} {...props} component={NoteView} >
+                    {/* <div>{note.tags}</div> */} 
                     <NoteTitle>{note.title}</NoteTitle>
                     <NoteBody>{note.textBody}</NoteBody>
                 </StyledLink>
+
               </div>
             );
           })}
@@ -37,7 +87,10 @@ const NoteList = props => {
   );
 };
 
+
 export default NoteList;
+
+
 
 const NotePageContainer = styled.section`
   display: flex;

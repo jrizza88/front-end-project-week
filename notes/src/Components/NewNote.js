@@ -8,12 +8,14 @@ class NewNote extends Component {
     constructor(props){
         super(props);
         this.state = {
-            note: {
-                _id: null,
-                tags: [],
-                title: '',
-                textBody: ''
-            }
+            note: [
+                {
+                  _id: null,
+                  tags: [],
+                  title: "",
+                  textBody: ""
+                }
+              ]
         }
     }
 
@@ -32,13 +34,14 @@ class NewNote extends Component {
         e.preventDefault();
         this.props.addNote(this.state.note)
         this.setState({
-            note: {
+            note: [{
+                _id: null,
                 tags: [],
                 title: '',
                 textBody: ''
-            }
+            }]
         })
-        this.props.history.push('/')
+        // this.props.history.push('/')
     }
 
   

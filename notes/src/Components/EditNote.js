@@ -5,70 +5,101 @@ class EditNote extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            note: {
-                _id: null,
-                tags: [],
-                title: '',
-                textBody: ''
-            }
+            // note: [
+            //     {
+                  _id: null,
+                  tags: [],
+                  title: "",
+                  textBody: ""
+            //     }
+            //   ]
         };
       }
 
     handleChange = e => {
         this.setState({
-            note: {
-                ...this.state.note,
+            // note: {
+                ...this.state,
                 [e.target.name]: e.target.value
-            }
+            // }
         });
     };
 
-    editNoteHandler = e => {
+    editNote = (e, _id, title, textBody) => {
         e.preventDefault();
-        this.props.editNoteHandler(this.state.note);
-        // this.setState({
-        //     note: {
-        //         tags: [],
-        //         title: this.state.title,
-        //         textBody: this.state.textBody
-        //     }
-        // })
-        // this.props.history.push('/')
+        let theId = this.props.match.params._id;
+       
+        // this.props.editNote(this.state.note);
+        this.props.editNote(
+            theId, 
+              {
+                title: this.state.title,
+                textBody: this.state.textBody
+            }
+            // this.state.notedata,
+            // this.props.match.params._id,
+            // this.props.history
+          );
     }
 
     componentDidMount(){
         console.log("note", this.state.note)
+        let title;
+        let textBody;
+        let _id;
+
         let theId = this.props.match.params._id;
+        const noteBody = this.props.notes.find(note => {return `${note._id}` === theId});
+       console.log("notebody", noteBody)
+        if (noteBody){
+            title = noteBody.title;
+            textBody = noteBody.textBody;
+            _id = noteBody._id;
+
+            this.setState({
+              
+                title: title,
+                textBody: textBody
+            })
+
+          }
+          
         console.log('params', this.props.match.params._id);
+        console.log("theId", theId)
 
-    const indNote = this.props.notes.find(note => note._id === theId);
-    console.log(indNote);
+    
+    // console.log(editNote);
 
-    if (!indNote) return;
-    this.setState({ note: indNote });
+    // if (!editNote) return;
+    // this.setState({ note: editNote });
     }
 
  
 
     render(){
+        console.log("edit note props", this.props)
+        // console.log("state", this.state.note)
+        console.log("title", this.state.title)
+        console.log("textBody", this.state.textBody)
+    
         return (
             <div>
-                <form onSubmit={this.editNoteHandler}>
+                <form onSubmit={this.editNote}>
                         <input
                             type="text"
                             name="title"
-                            placeholder={this.state.note.title}
+                            placeholder={this.state.title}
                             onChange={this.handleChange}
-                            value={this.state.note.title}
+                            value={this.state.title}
                         />
                         <input
                             type="text"
                             name="textBody"
-                            placeholder={this.state.note.textBody}
+                            placeholder={this.state.textBody}
                             onChange={this.handleChange}
-                            value={this.state.note.textBody}
+                            value={this.state.textBody}
                         />
-                        <button type="submit" >Update Note</button>
+                        <button type="submit">Update Note</button>
                     </form>
             </div>
         )
