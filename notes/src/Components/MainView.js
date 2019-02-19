@@ -44,6 +44,7 @@ class MainView extends Component {
         console.log("POST request response", response);
         console.log("response.data", response.data)
         this.setState({ notes: response.data.success});
+        console.log(this.props.history.push('/'))
         // this.props.history.push('/')
         window.location.reload()
       })
@@ -60,7 +61,7 @@ class MainView extends Component {
         console.log("PUT/UPDATE req response: ", response);
         console.log("PUT/UPDATE ID: ", _id);
         // console.log(history);
-        this.props.history.push("/");
+        this.props.history.push(`/viewNote/${_id}`);
         window.location.reload()
         this.setState({ notes: response.data.success});
       })
@@ -82,6 +83,19 @@ class MainView extends Component {
       });
   };
 
+  deleteNote = _id => {
+    console.log("delete note")
+    axios
+    .delete(`https://fe-notes.herokuapp.com/note/delete/${_id}`)
+    .then (response => {
+      console.log("delete note response", response)
+      console.log("delete data response view...", response.data)
+      // this.setState({notes: response.data})
+      window.location.reload()
+      this.props.history.push("/")
+    })
+  }
+
 
   render() {
     return (
@@ -93,6 +107,7 @@ class MainView extends Component {
               {...props}
               indNote={this.viewOneNote}
               notes={this.state.notes}
+              handleDeleteModal={this.deleteNote}
             />
           )}
         />

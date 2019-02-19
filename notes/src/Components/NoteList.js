@@ -37,30 +37,6 @@ const NoteInfo = {
 //   );
 // };
 
-// const NoteList = props => {
-//   console.log("NoteList props", props)
-//   return (
-//     <NotePageContainer>
-//       <WrapContent>
-//         <NoteListHeader> Your Notes: </NoteListHeader>
-//         <NoteCard >
-//           {props.notes.map(note => {
-//             return (
-//               <NoteView 
-//               {...props}
-//               title={note.title}
-//               textBody={note.textBody}
-//               _id={note._id}
-//               key={note._id}
-//               />
-//             );
-//           })}
-//         </NoteCard>
-//       </WrapContent>
-//     </NotePageContainer>
-//   );
-// };
-
 const NoteList = props => {
   return (
     <NotePageContainer>

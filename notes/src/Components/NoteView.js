@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import EditNote from './EditNote';
 import {Link} from 'react-router-dom';
+import Modal from 'react-modal';
 
 const NoteInfo = {
   display: "flex",
@@ -18,23 +19,36 @@ const NoteInfo = {
 class NoteView extends Component {
   constructor(props) {
     super(props);
-  //   this.state = {
-  //     notedata: [
-  //       {
-  //         _id: null,
-  //         tags: [],
-  //         title: "",
-  //         textBody: ""
-  //       }
-  //     ]
-  //   };
+    this.state = {
+      // note: [
+      //   {
+      //     _id: null,
+      //     tags: [],
+      //     title: "",
+      //     textBody: ""
+      //   }
+      // ],
+  showModal: false
+    };
+
   }
 
+  // Open the modal 
+  openModal = () => {
+    this.setState({ showModal: true});
+  }
 
+  // Close out the modal / say no to deleting item 
+  closeModal = () => {
+    this.setState({ showModal: false});
+  }
 
-  deleteNoteHandler = () => {
+  handleDeleteModal = () => {
     let theId = this.props.match.params._id;
-    theId()
+    console.log("delete theId", theId)
+    console.log(this.state.note)
+    this.props.handleDeleteModal(theId)
+    this.setState({showModal: false})
   }
 
   render() {
@@ -69,7 +83,14 @@ class NoteView extends Component {
              component={EditNote}
             >
             <button>Edit</button></StyledLink>
-            <button>Delete</button>
+            <button onClick={this.openModal}>Delete</button>
+            <Modal
+            isOpen={this.state.showModal}
+            >
+              <div>Are you sure you want to delete this note?</div>
+                  <button onClick={this.handleDeleteModal}>Delete</button>
+                  <button onClick={this.closeModal}>No</button>
+            </Modal>
             <NoteContainer>
                 <NoteTitle>{title} </NoteTitle>
                 <NoteBody>{textBody}</NoteBody>

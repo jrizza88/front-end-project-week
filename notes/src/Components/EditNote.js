@@ -5,23 +5,17 @@ class EditNote extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // note: [
-            //     {
                   _id: null,
                   tags: [],
                   title: "",
                   textBody: ""
-            //     }
-            //   ]
         };
       }
 
     handleChange = e => {
-        this.setState({
-            // note: {
+        this.setState({      
                 ...this.state,
-                [e.target.name]: e.target.value
-            // }
+                [e.target.name]: e.target.value       
         });
     };
 
@@ -66,12 +60,6 @@ class EditNote extends Component {
           
         console.log('params', this.props.match.params._id);
         console.log("theId", theId)
-
-    
-    // console.log(editNote);
-
-    // if (!editNote) return;
-    // this.setState({ note: editNote });
     }
 
  
