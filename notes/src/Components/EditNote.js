@@ -6,7 +6,6 @@ class EditNote extends Component {
         super(props);
         this.state = {
                   _id: null,
-                  tags: [],
                   title: "",
                   textBody: ""
         };
@@ -37,7 +36,6 @@ class EditNote extends Component {
     }
 
     componentDidMount(){
-        console.log("note", this.state.note)
         let title;
         let textBody;
         let _id;

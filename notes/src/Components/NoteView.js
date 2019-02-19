@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import EditNote from './EditNote';
-import {Link} from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
 const NoteInfo = {
@@ -67,11 +67,12 @@ class NoteView extends Component {
       _id = indNote._id;
     }
     // const { title, textBody } = this.props;
-    console.log("link was clicked", Link)
+    console.log("link was clicked", StyledLink)
     console.log("this.props", this.props)
     return (
       <div>
-		{(indNote)?
+		{
+      (indNote)?
       <div>
         <h2>Individual Note view</h2>
         <div>
@@ -98,7 +99,7 @@ class NoteView extends Component {
         </div>
       </div>
 		: 
-		<div> other data </div>
+		<div> Other Data </div>
 		}
 	</div>
     );
@@ -118,6 +119,10 @@ align-items: flex-start;
 const StyledLink = styled(Link)`
 border: 2px solid black;
 `
+
+// const Link = styled(Link)`
+// border: 2px solid black;
+// `
 
 const NoteTitle = styled.div`
   display: block;

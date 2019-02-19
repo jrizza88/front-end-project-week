@@ -36,6 +36,20 @@ class MainView extends Component {
       });
   }
 
+
+  viewOneNote = _id => {
+    axios
+      .get(`https://fe-notes.herokuapp.com/note/get/${_id}`)
+      .then(response => {
+        console.log("one note view", response.data);
+        console.log("ID", _id);
+        this.setState({ note: response.data.success });
+      })
+      .catch(error => {
+        console.error("GET ID error occured!", error);
+      });
+  };
+
   
   postNote = (create) => {
     axios
@@ -43,13 +57,14 @@ class MainView extends Component {
       .then(response => {
         console.log("POST request response", response);
         console.log("response.data", response.data)
-        this.setState({ notes: response.data.success});
-        console.log(this.props.history.push('/'))
-        // this.props.history.push('/')
-        window.location.reload()
+        this.setState(prevState=>({notes: [create, ...prevState.notes]}))
+        // console.log(this.props.history.push('/'))
+        this.props.history.push('/')
+        // window.location.reload()
       })
       .catch(error => {
         console.error("POST error occured!", error);
+        // window.location.reload()
       });
   };
 
@@ -60,26 +75,15 @@ class MainView extends Component {
       .then(response => {
         console.log("PUT/UPDATE req response: ", response);
         console.log("PUT/UPDATE ID: ", _id);
-        // console.log(history);
+        // this.props.history.push(`/viewNote/${_id}`);
+        // window.location.reload()
+      
+        this.setState({ note: this.state.notes });
         this.props.history.push(`/viewNote/${_id}`);
-        window.location.reload()
-        this.setState({ notes: response.data.success});
+        // this.props.history.push(`/viewNote/${_id}`);
       })
       .catch(error => {
         console.log("PUT/UPDATE req error", error);
-      });
-  };
-
-  viewOneNote = _id => {
-    axios
-      .get(`https://fe-notes.herokuapp.com/note/get/${_id}`)
-      .then(response => {
-        console.log("one note view", response.data);
-        console.log("ID", _id);
-        this.setState({ _id: response.data.success });
-      })
-      .catch(error => {
-        console.error("GET ID error occured!", error);
       });
   };
 
@@ -91,8 +95,9 @@ class MainView extends Component {
       console.log("delete note response", response)
       console.log("delete data response view...", response.data)
       // this.setState({notes: response.data})
-      window.location.reload()
+    
       this.props.history.push("/")
+      // window.location.reload()
     })
   }
 
@@ -113,17 +118,24 @@ class MainView extends Component {
         />
         <Route
          exact path="/editNote/:_id"
-          render={props => <EditNote {...props}  notes={this.state.notes}
+          render={props => <EditNote
+             {...props}  
+             notes={this.state.notes}
           editNote={this.editNote} />}
         /> 
         <Route
          exact path="/addNote"
-          render={props => <NewNote {...props} addNote={this.postNote} notes={this.state.notes}/>}
+          render={props => <NewNote 
+            {...props} 
+            addNote={this.postNote} 
+            notes={this.state.notes}/>}
         />
         <Route
           exact
           path="/"
-          render={props => <NoteList {...props} notes={this.state.notes} />}
+          render={props => <NoteList 
+            {...props} 
+            notes={this.state.notes} />}
         />
       </MainViewContainer>
     );
