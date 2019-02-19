@@ -53,7 +53,7 @@ class NoteView extends Component {
 
   render() {
     let theId = this.props.match.params._id;
-    console.log(this.props.match.params._id);
+    console.log(theId);
 
     let title;
     let textBody;

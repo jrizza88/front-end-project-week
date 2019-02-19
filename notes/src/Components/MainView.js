@@ -58,9 +58,9 @@ class MainView extends Component {
         console.log("POST request response", response);
         console.log("response.data", response.data)
         this.setState(prevState=>({notes: [create, ...prevState.notes]}))
-        // console.log(this.props.history.push('/'))
+        
         this.props.history.push('/')
-        // window.location.reload()
+        
       })
       .catch(error => {
         console.error("POST error occured!", error);
@@ -77,9 +77,17 @@ class MainView extends Component {
         console.log("PUT/UPDATE ID: ", _id);
         // this.props.history.push(`/viewNote/${_id}`);
         // window.location.reload()
+        // this.setState({ notes: [note, response.data.success]});
+        this.setState({ notes: [note, ...this.state.notes]});
+        this.props.history.push(`/viewNote/${note._id}`);
+        this.props.notes.find(note => {return `/viewNote/${note._id}` === note});
+        //  this.props.history.push(`/viewNote/${_id}`);
+        // this.setState({ notes: [note, ...this.state.notes]});
+        // this.props.history.push(`/viewNote/${_id}`);
+        // this.setState({ notes: this.state.notes});
       
-        this.setState({ note: this.state.notes });
-        this.props.history.push(`/viewNote/${_id}`);
+       
+        
         // this.props.history.push(`/viewNote/${_id}`);
       })
       .catch(error => {
