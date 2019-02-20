@@ -20,10 +20,11 @@ class EditNote extends Component {
       
     };
 
-    editNote = (e, _id, title, textBody) => {
+    editNote = (e, _id) => {
+        // editNote = (e, _id, title, textBody) => {
         e.preventDefault();
         let theId = this.props.match.params._id;
-       
+
         // this.props.editNote(this.state.note);
         this.props.editNote(
             theId, 
@@ -53,7 +54,8 @@ class EditNote extends Component {
             this.setState({
               
                 title: title,
-                textBody: textBody
+                textBody: textBody,
+                _id: _id
             })
 
           }

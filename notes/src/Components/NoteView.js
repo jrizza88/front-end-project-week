@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import EditNote from './EditNote';
-import {Link } from 'react-router-dom';
+import {Link, withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 
-const NoteInfo = {
-  display: "flex",
-  flexDirection: "column",
-  backgroundColor: "white",
-  border: "solid 1px black",
-  width: "20%",
-  height: "200px",
-  margin: "5% 2.5%",
-  padding: "1% 1.5%",
-};
+// const NoteInfo = {
+//   display: "flex",
+//   flexDirection: "column",
+//   backgroundColor: "white",
+//   border: "solid 1px black",
+//   width: "20%",
+//   height: "200px",
+//   margin: "5% 2.5%",
+//   padding: "1% 1.5%",
+// };
 
 
 class NoteView extends Component {
@@ -32,6 +32,7 @@ class NoteView extends Component {
     };
 
   }
+
 
   // Open the modal 
   openModal = () => {
@@ -53,7 +54,7 @@ class NoteView extends Component {
 
   render() {
     let theId = this.props.match.params._id;
-    console.log(theId);
+    console.log("TheID NoteView", theId);
 
     let title;
     let textBody;
@@ -65,14 +66,19 @@ class NoteView extends Component {
       title = indNote.title;
       textBody = indNote.textBody;
       _id = indNote._id;
-    }
+    } 
+    // else {
+    //   title = indNote.title;
+    //   textBody = indNote.textBody;
+    //   _id = indNote._id;
+    // }
     // const { title, textBody } = this.props;
     console.log("link was clicked", StyledLink)
     console.log("this.props", this.props)
     return (
       <div>
 		{
-      (indNote)?
+      (indNote) ?
       <div>
         <h2>Individual Note view</h2>
         <div>

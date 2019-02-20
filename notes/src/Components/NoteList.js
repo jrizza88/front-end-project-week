@@ -46,10 +46,9 @@ const NoteList = props => {
           {props.notes.map(note => {
             return (
               <div style={NoteInfo} key={note._id}>
-
                 <StyledLink to={`/viewNote/${note._id}`} title={note.title}
                 textBody={note.textBody} _id={note._id} {...props} component={NoteView} >
-                    {/* <div>{note.tags}</div> */} 
+                    <div>{note.tags}</div> 
                     <NoteTitle>{note.title}</NoteTitle>
                     <NoteBody>{note.textBody}</NoteBody>
                 </StyledLink>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { Route, withRouter } from 'react-router-dom';
 
+
 // Components
 import NoteList from "./NoteList";
 import NoteView from "./NoteView";
@@ -36,7 +37,6 @@ class MainView extends Component {
       });
   }
 
-
   viewOneNote = _id => {
     axios
       .get(`https://fe-notes.herokuapp.com/note/get/${_id}`)
@@ -49,7 +49,6 @@ class MainView extends Component {
         console.error("GET ID error occured!", error);
       });
   };
-
   
   postNote = (create) => {
     axios
@@ -57,7 +56,7 @@ class MainView extends Component {
       .then(response => {
         console.log("POST request response", response);
         console.log("response.data", response.data)
-        this.setState(prevState=>({notes: [create, ...prevState.notes]}))
+        this.setState(previousState=>({notes: [create, ...previousState.notes]}))
         
         this.props.history.push('/')
         
@@ -78,20 +77,20 @@ class MainView extends Component {
         // this.props.history.push(`/viewNote/${_id}`);
         // window.location.reload()
         // this.setState({ notes: [note, response.data.success]});
-        this.setState({ notes: [note, ...this.state.notes]});
-        this.props.history.push(`/viewNote/${note._id}`);
+        // this.props.history.push(`/viewNote/${_id}`);
+        // this.setState({ notes: [note, response.data.success]});
+         this.setState({notes: this.state.notes})
+         console.log('note in PUT', note)
+         console.log("this.state.notes", this.state.notes)
+        this.props.history.push(`/viewNote/${_id}`);
         this.props.notes.find(note => {return `/viewNote/${note._id}` === note});
-        //  this.props.history.push(`/viewNote/${_id}`);
-        // this.setState({ notes: [note, ...this.state.notes]});
-        // this.props.history.push(`/viewNote/${_id}`);
-        // this.setState({ notes: this.state.notes});
-      
-       
-        
-        // this.props.history.push(`/viewNote/${_id}`);
+        // this.setState({notes: response.data.success})
+        // this.setState(prevState => ({ notes: response.data }));
+        // // this.setState({ notes: [note, response.data.success]});
+        // // this.props.notes.find(note => {return `/viewNote/${note._id}` === note._id});
       })
       .catch(error => {
-        console.log("PUT/UPDATE req error", error);
+        console.error("PUT/UPDATE req error", error);
       });
   };
 
@@ -100,13 +99,15 @@ class MainView extends Component {
     axios
     .delete(`https://fe-notes.herokuapp.com/note/delete/${_id}`)
     .then (response => {
-      console.log("delete note response", response)
       console.log("delete data response view...", response.data)
-      // this.setState({notes: response.data})
-    
+      // this.setState({notes: [_id, this.state.notes]})
+      // window.location.reload()
       this.props.history.push("/")
       // window.location.reload()
     })
+    .catch(error => {
+      console.log("DELETE req error", error);
+    });
   }
 
 
