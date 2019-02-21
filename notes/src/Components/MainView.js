@@ -58,8 +58,7 @@ class MainView extends Component {
       .then(response => {
         console.log("POST request response", response);
         console.log("response.data", response.data)
-        this.setState(previousState=>({notes: [create, ...previousState.notes]}))
-        
+        this.setState(previousState=>({notes: [...previousState.notes, create]}))
         this.props.history.push('/')
         
       })
@@ -88,39 +87,24 @@ class MainView extends Component {
       .catch(error => {
         console.error("PUT/UPDATE req error", error);
         this.setState({
-          // notes: [note, this.state.notes],
-          notes: "[note, this.state.notes]",
           error: this.state.error
         })
       });
   };
 
   deleteNote = _id => {
-    
     console.log("delete note")
     axios
     .delete(`https://fe-notes.herokuapp.com/note/delete/${_id}`)
-    .then (response => {
-          // this.setState ( deleteState => {
-          //   let deleteItem = deleteState.notes.filter ( i =>
-          //       i._id === _id ? response.data.success: i
-          //   );
-          //   return {notes: deleteItem}
-          // }
-
-          // )   
+    .then (response => {  
           this.setState ( deleteState => {
             let deleteItem = deleteState.notes.filter ( i =>
                 i._id !== _id ? this.state.notes : null
             );
             return {notes: deleteItem}
-          }
-
-          ) 
+          }) 
            console.log("delete,", response);
       console.log("delete data response view...", response.data)
-      // this.setState({notes: [_id, this.state.notes]})
-      // window.location.reload()
       this.props.history.push("/")
     })
     .catch(error => {
