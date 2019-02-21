@@ -29,6 +29,7 @@ class EditNote extends Component {
         this.props.editNote(
             theId, 
               {
+                _id: this.state._id,
                 title: this.state.title,
                 textBody: this.state.textBody
             }

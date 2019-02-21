@@ -16,12 +16,13 @@ class MainView extends Component {
     this.state = {
       notes: [
         {
-          _id: null,
-          tags: [],
+          _id: '',
+          // tags: [],
           title: "",
-          textBody: ""
+          textBody: "",
         }
-      ]
+      ],
+      error: ''
     };
   }
 
@@ -36,6 +37,8 @@ class MainView extends Component {
         console.error("GET error occured!", error);
       });
   }
+
+  
 
   viewOneNote = _id => {
     axios
@@ -72,25 +75,31 @@ class MainView extends Component {
     axios
       .put(`https://fe-notes.herokuapp.com/note/edit/${_id}`, note)
       .then(response => {
-        console.log("PUT/UPDATE req response: ", response);
+        console.log("PUT/UPDATE req response: ", response.data);
         console.log("PUT/UPDATE ID: ", _id);
+      
         // this.props.history.push(`/viewNote/${_id}`);
         // window.location.reload()
         // this.setState({ notes: [note, response.data.success]});
         // this.props.history.push(`/viewNote/${_id}`);
         // this.setState({ notes: [note, response.data.success]});
-         this.setState({notes: this.state.notes})
+        this.setState( theState => { 
+          
+          let mappedArray = theState.notes.map( i => 
+              i._id === _id ? response.data: i
+            );
+            return {notes: mappedArray}
+        })
          console.log('note in PUT', note)
          console.log("this.state.notes", this.state.notes)
-        this.props.history.push(`/viewNote/${_id}`);
-        this.props.notes.find(note => {return `/viewNote/${note._id}` === note});
-        // this.setState({notes: response.data.success})
-        // this.setState(prevState => ({ notes: response.data }));
-        // // this.setState({ notes: [note, response.data.success]});
-        // // this.props.notes.find(note => {return `/viewNote/${note._id}` === note._id});
+        this.props.history.push(`/viewNote/${note._id}`);
       })
       .catch(error => {
         console.error("PUT/UPDATE req error", error);
+        this.setState({
+          notes: [note, this.state.notes],
+          error: this.state.error
+        })
       });
   };
 
@@ -130,6 +139,7 @@ class MainView extends Component {
           render={props => <EditNote
              {...props}  
              notes={this.state.notes}
+             error={this.state.error}
           editNote={this.editNote} />}
         /> 
         <Route
