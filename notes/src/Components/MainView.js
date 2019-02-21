@@ -16,10 +16,9 @@ class MainView extends Component {
     this.state = {
       notes: [
         {
-          _id: '',
-          // tags: [],
+          _id: null,
           title: "",
-          textBody: "",
+          textBody: ""
         }
       ],
       error: ''
@@ -66,7 +65,6 @@ class MainView extends Component {
       })
       .catch(error => {
         console.error("POST error occured!", error);
-        // window.location.reload()
       });
   };
 
@@ -77,14 +75,7 @@ class MainView extends Component {
       .then(response => {
         console.log("PUT/UPDATE req response: ", response.data);
         console.log("PUT/UPDATE ID: ", _id);
-      
-        // this.props.history.push(`/viewNote/${_id}`);
-        // window.location.reload()
-        // this.setState({ notes: [note, response.data.success]});
-        // this.props.history.push(`/viewNote/${_id}`);
-        // this.setState({ notes: [note, response.data.success]});
-        this.setState( theState => { 
-          
+        this.setState( theState => {         
           let mappedArray = theState.notes.map( i => 
               i._id === _id ? response.data: i
             );
@@ -97,22 +88,40 @@ class MainView extends Component {
       .catch(error => {
         console.error("PUT/UPDATE req error", error);
         this.setState({
-          notes: [note, this.state.notes],
+          // notes: [note, this.state.notes],
+          notes: "[note, this.state.notes]",
           error: this.state.error
         })
       });
   };
 
   deleteNote = _id => {
+    
     console.log("delete note")
     axios
     .delete(`https://fe-notes.herokuapp.com/note/delete/${_id}`)
     .then (response => {
+          // this.setState ( deleteState => {
+          //   let deleteItem = deleteState.notes.filter ( i =>
+          //       i._id === _id ? response.data.success: i
+          //   );
+          //   return {notes: deleteItem}
+          // }
+
+          // )   
+          this.setState ( deleteState => {
+            let deleteItem = deleteState.notes.filter ( i =>
+                i._id !== _id ? this.state.notes : null
+            );
+            return {notes: deleteItem}
+          }
+
+          ) 
+           console.log("delete,", response);
       console.log("delete data response view...", response.data)
       // this.setState({notes: [_id, this.state.notes]})
       // window.location.reload()
       this.props.history.push("/")
-      // window.location.reload()
     })
     .catch(error => {
       console.log("DELETE req error", error);

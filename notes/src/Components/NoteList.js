@@ -15,7 +15,10 @@ const NoteInfo = {
 };
 
 
+
 const NoteList = props => {
+
+ 
   return (
     <NotePageContainer>
       <WrapContent>
@@ -60,6 +63,9 @@ const WrapContent = styled.div`
 
 const NoteListHeader = styled.div`
   display: flex;
+  margin-top: 5%;
+  font-size: 24px;
+  font-weight: bold;
   text-decoration: none;
 `;
 
@@ -75,6 +81,7 @@ const NoteCard = styled.section`
 
 const NoteTitle = styled.div`
   display: block;
+  font-weight: bold;
   border-bottom: solid 3px lightgrey;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -89,7 +96,7 @@ display: block;
 display: -webkit-box;
 max-width: 100%;
 height: 85%;
-font-size: 14px;
+font-size: 12.5px;
 line-height: 2;
 -webkit-line-clamp: 6;
 -webkit-box-orient: vertical;
