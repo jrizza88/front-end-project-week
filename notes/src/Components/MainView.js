@@ -57,10 +57,8 @@ class MainView extends Component {
       .post(`https://fe-notes.herokuapp.com/note/create`, create)
       .then(response => {
         console.log("POST request response", response);
-        console.log("response.data", response.data)
         this.setState(previousState=>({notes: [...previousState.notes, create]}))
         this.props.history.push('/')
-        
       })
       .catch(error => {
         console.error("POST error occured!", error);

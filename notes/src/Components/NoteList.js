@@ -113,28 +113,3 @@ const StyledLink = styled(Link)`
         text-decoration: none;
     }
 `
-
-
-
-// const NoteList = props => {
-//   return (
-//     <NotePageContainer>
-//       <WrapContent>
-//         <NoteListHeader> Your Notes: </NoteListHeader>
-//         <NoteCard >
-//           {props.notes.map(note => {
-//             return (
-//               <div style={NoteInfo} key={note._id}>
-//                 <StyledLink to={`/viewNote/${note._id}`} component={NoteView}>
-//                     {/* <div>{note.tags}</div> */}
-//                     <NoteTitle>{note.title}</NoteTitle>
-//                     <NoteBody>{note.textBody}</NoteBody>
-//                 </StyledLink>
-//               </div>
-//             );
-//           })}
-//         </NoteCard>
-//       </WrapContent>
-//     </NotePageContainer>
-//   );
-// };

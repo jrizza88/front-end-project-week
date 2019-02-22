@@ -55,43 +55,58 @@ class NoteView extends Component {
     console.log("this.props", this.props)
 
     return (
-      <div>
+      <DivContainer>
 		{
       (indNote) ?
-      <div>
-        <h2>Individual Note view</h2>
-        <div>
-             <StyledLink to={`/editNote/${this.props.match.params._id}`} 
-             {...this.props} 
-             title={title}
-             _id={_id}
-             textBody={textBody}
-             component={EditNote}
-            >
-            <button>Edit</button></StyledLink>
-            <button onClick={this.openModal}>Delete</button>
-            <Modal
-            isOpen={this.state.showModal}
-            >
-              <div>Are you sure you want to delete this note?</div>
-                  <button onClick={this.handleDeleteModal}>Delete</button>
-                  <button onClick={this.closeModal}>No</button>
-            </Modal>
+      <SectionContainer>
+
+          <ButtonDiv>
+          <EditDiv><StyledLink to={`/editNote/${this.props.match.params._id}`} 
+              {...this.props} 
+              title={title}
+              _id={_id}
+              textBody={textBody}
+              component={EditNote}
+              >
+              Edit</StyledLink></EditDiv>
+              <DeleteDiv onClick={this.openModal}>Delete</DeleteDiv>
+          </ButtonDiv>
+              <Modal
+              isOpen={this.state.showModal}
+              >
+                <div>Are you sure you want to delete this note?</div>
+                    <button onClick={this.handleDeleteModal}>Delete</button>
+                    <button onClick={this.closeModal}>No</button>
+              </Modal>
             <NoteContainer>
                 <NoteTitle>{title} </NoteTitle>
                 <NoteBody>{textBody}</NoteBody>
           </NoteContainer>
-        </div>
-      </div>
+
+      </SectionContainer>
 		: 
 		<div> Other Data </div>
 		}
-	</div>
+	</DivContainer>
     );
   }
 }
 
 export default NoteView;
+
+const DivContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 100%;
+max-width: 1000px;
+// border: 1px solid purple;
+`
+const SectionContainer = styled.div`
+display: flex;
+flex-direction: column;
+`
 
 
 const NoteContainer = styled.div`
@@ -99,33 +114,47 @@ display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: flex-start;
+width: 100%;
+min-width: 700px
+margin-top: 5%;
 `;
 
+const ButtonDiv = styled.div`
+margin-top: 2.5%;
+display: flex;
+width: 100%;
+justify-content: flex-end;
+`
+
+const EditDiv = styled.div`
+font-weight: bold;
+text-decoration: underline;
+margin-right: 2%;
+`
+
+const DeleteDiv = styled.div`
+font-weight: bold;
+text-decoration: underline;
+`
+
 const StyledLink = styled(Link)`
-border: 2px solid black;
+// border: 2px solid black;
+text-decoration: none;
 `;
+
 
 const NoteTitle = styled.div`
   display: block;
-  border-bottom: solid 3px lightgrey;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-decoration: none;
+  font-weight: bold;
 `;
 
 const NoteBody = styled.div`
 display: block;
-display: -webkit-box;
+margin-right: 2%;
+margin-top: 3%;
 max-width: 100%;
 height: 85%;
 font-size: 14px;
 line-height: 2;
--webkit-line-clamp: 6;
--webkit-box-orient: vertical;
-overflow: hidden;
-text-overflow: ellipsis;
-text-decoration: none;
 `;
+
