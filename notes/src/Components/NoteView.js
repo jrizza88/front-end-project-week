@@ -129,6 +129,7 @@ justify-content: flex-end;
 const EditDiv = styled.div`
 font-weight: bold;
 text-decoration: underline;
+color: black;
 margin-right: 2%;
 `
 
@@ -140,6 +141,7 @@ text-decoration: underline;
 const StyledLink = styled(Link)`
 // border: 2px solid black;
 text-decoration: none;
+color: black;
 `;
 
 

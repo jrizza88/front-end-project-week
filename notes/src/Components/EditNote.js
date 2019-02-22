@@ -84,9 +84,10 @@ class EditNote extends Component {
                             onChange={this.handleChange}
                             value={this.state.title}
                         />
-                        <Input
-                            type="text"
+                        <TextArea
+                            type="textarea"
                             name="textBody"
+                            // maxlength="40"
                             placeholder={this.state.textBody}
                             onChange={this.handleChange}
                             value={this.state.textBody}
@@ -106,7 +107,9 @@ const EditListContainer = styled.section`
 display: flex;
 flex-direction: column;
 justify-content: space-around;
-width: 100%;
+margin-left: 10%;
+width: 80%;
+position: fixed;
 `
 
 const EditListHeader = styled.div`
@@ -124,7 +127,24 @@ flex-direction: column;
 `
 
 const Input = styled.input`
-width: 25%;
+width: 40%;
+border: 1px solid black;
+border-radius: 5px;
+padding: 1.5% 1%;
+margin: 1% 0;
+font-size: 16px;
+`;
+
+const TextArea = styled.textarea`
+width: 70%;
+height: 400px;
+max-width: 100%;
+border: 1px solid black;
+border-radius: 5px;
+padding: 2% 1%;
+margin: 1% 0;
+font-size: 16px;
+position: static;
 `;
 
 const UpdateButton = styled.button`
@@ -132,7 +152,7 @@ const UpdateButton = styled.button`
     justify-content: center;
     background-color: mediumturquoise;
     color: white;
-    width: 15%;
+    width: 20%;
     padding: 1% 6%;
     margin-top: 2.5%;
     // margin-bottom: 5%;
