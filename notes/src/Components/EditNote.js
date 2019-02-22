@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
 
 
 class EditNote extends Component {
@@ -69,30 +70,30 @@ class EditNote extends Component {
 
     render(){
         console.log("edit note props", this.props)
-        // console.log("state", this.state.note)
         console.log("title", this.state.title)
         console.log("textBody", this.state.textBody)
     
         return (
-            <div>
-                <form onSubmit={this.editNote}>
-                        <input
+            <EditListContainer>
+                <EditListHeader>Edit Note:</EditListHeader>
+                <Form onSubmit={this.editNote}>
+                        <Input
                             type="text"
                             name="title"
                             placeholder={this.state.title}
                             onChange={this.handleChange}
                             value={this.state.title}
                         />
-                        <input
+                        <Input
                             type="text"
                             name="textBody"
                             placeholder={this.state.textBody}
                             onChange={this.handleChange}
                             value={this.state.textBody}
                         />
-                        <button type="submit">Update Note</button>
-                    </form>
-            </div>
+                        <UpdateButton type="submit">Update</UpdateButton>
+                    </Form>
+            </EditListContainer>
         )
     }
 
@@ -100,3 +101,44 @@ class EditNote extends Component {
 }
 
 export default EditNote;
+
+const EditListContainer = styled.section`
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+width: 100%;
+`
+
+const EditListHeader = styled.div`
+  display: flex;
+  margin-top: 5%;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  padding-bottom: 3%;
+`;
+
+const Form = styled.form`
+display: flex;
+flex-direction: column;
+`
+
+const Input = styled.input`
+width: 25%;
+`;
+
+const UpdateButton = styled.button`
+    display: flex;
+    justify-content: center;
+    background-color: mediumturquoise;
+    color: white;
+    width: 15%;
+    padding: 1% 6%;
+    margin-top: 2.5%;
+    // margin-bottom: 5%;
+    font-size: 1rem;
+    font-weight: bold;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
