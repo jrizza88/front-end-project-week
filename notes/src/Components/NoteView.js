@@ -71,13 +71,15 @@ class NoteView extends Component {
                 Edit</StyledLink></EditDiv>
               <DeleteDiv type="submit" onClick={this.openModal}>Delete</DeleteDiv>
           </ButtonDiv>
-              <Modal
+              <DeleteModal 
               isOpen={this.state.showModal}
               >
-                <div>Are you sure you want to delete this note?</div>
-                    <button onClick={this.handleDeleteModal}>Delete</button>
-                    <button onClick={this.closeModal}>No</button>
-              </Modal>
+                    <div>Are you sure you want to delete this note?</div>
+                    <DeleteContainer>
+                      <DeleteButton onClick={this.handleDeleteModal}>Delete</DeleteButton>
+                      <CloseButton onClick={this.closeModal}>No</CloseButton>
+                    </DeleteContainer>
+              </DeleteModal >
             <NoteContainer>
                 <NoteTitle>{title} </NoteTitle>
                 <NoteBody>{textBody}</NoteBody>
@@ -125,19 +127,71 @@ display: flex;
 width: 100%;
 justify-content: flex-end;
 padding-right: 2%;
-`
+`;
+
+const DeleteModal = styled(Modal)`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin: 10% 20%;
+padding: 10%;
+border: 1px solid black;
+border-radius: 5px;
+background-color: white;
+`;
+
+const DeleteContainer = styled.div`
+display: flex;
+flex-direction: row;
+width: 100%;
+height: 100px;
+align-items: center;
+justify-content: space-around;
+`;
+
+
+const DeleteButton = styled.button`
+display: flex;
+justify-content: center;
+background-color: red;
+color: white;
+width: 40%;
+padding: 3% 2%;
+margin: 2.5% 0;
+font-size: 1rem;
+font-weight: bold;
+&:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+}
+`;
+
+const CloseButton = styled.button`
+display: flex;
+justify-content: center;
+background-color: mediumturquoise;
+color: white;
+width: 40%;
+padding: 3% 2%;
+margin: 2.5% 0;
+font-size: 1rem;
+font-weight: bold;
+&:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+}
+`;
 
 const EditDiv = styled.div`
 font-weight: bold;
 text-decoration: underline;
 color: black;
 margin-right: 2%;
-`
+`;
 
 const DeleteDiv = styled.div`
 font-weight: bold;
 text-decoration: underline;
-`
+`;
 
 const StyledLink = styled(Link)`
 // border: 2px solid black;
