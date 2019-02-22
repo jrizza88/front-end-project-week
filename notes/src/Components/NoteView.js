@@ -61,15 +61,15 @@ class NoteView extends Component {
       <SectionContainer>
 
           <ButtonDiv>
-          <EditDiv><StyledLink to={`/editNote/${this.props.match.params._id}`} 
-              {...this.props} 
-              title={title}
-              _id={_id}
-              textBody={textBody}
-              component={EditNote}
-              >
-              Edit</StyledLink></EditDiv>
-              <DeleteDiv onClick={this.openModal}>Delete</DeleteDiv>
+            <EditDiv><StyledLink to={`/editNote/${this.props.match.params._id}`} 
+                {...this.props} 
+                title={title}
+                _id={_id}
+                textBody={textBody}
+                component={EditNote}
+                >
+                Edit</StyledLink></EditDiv>
+              <DeleteDiv type="submit" onClick={this.openModal}>Delete</DeleteDiv>
           </ButtonDiv>
               <Modal
               isOpen={this.state.showModal}
@@ -124,6 +124,7 @@ margin-top: 2.5%;
 display: flex;
 width: 100%;
 justify-content: flex-end;
+padding-right: 2%;
 `
 
 const EditDiv = styled.div`

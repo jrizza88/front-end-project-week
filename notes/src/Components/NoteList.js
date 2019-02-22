@@ -8,9 +8,9 @@ const NoteInfo = {
   flexDirection: "column",
   backgroundColor: "white",
   border: "solid 1px black",
-  width: "20%",
+  width: "25%",
   height: "200px",
-  margin: "5% 2.5%",
+  margin: "2.5%",
   padding: "1% 1.5%",
 };
 
@@ -25,13 +25,15 @@ const NoteList = props => {
         <NoteListHeader> Your Notes: </NoteListHeader>
         <NoteCard >
           {props.notes.map(note => {
+            let textbody = note.textBody;
+               textbody = textbody.length > 110 ? textbody.substring(0, 110) + "...": textbody.substring(0, 110);
             return (
               <div style={NoteInfo} key={note._id}>
                 <StyledLink to={`/viewNote/${note._id}`} title={note.title}
                 textBody={note.textBody} _id={note._id} {...props} component={NoteView} >
                     <div>{note.tags}</div> 
                     <NoteTitle>{note.title}</NoteTitle>
-                    <NoteBody>{note.textBody}</NoteBody>
+                    <NoteBody>{textbody}</NoteBody>
                 </StyledLink>
 
               </div>
@@ -96,7 +98,7 @@ display: block;
 display: -webkit-box;
 max-width: 100%;
 height: 85%;
-font-size: 12.5px;
+font-size: 1em;
 line-height: 2;
 -webkit-line-clamp: 6;
 -webkit-box-orient: vertical;

@@ -109,7 +109,7 @@ flex-direction: column;
 justify-content: space-around;
 margin-left: 10%;
 width: 80%;
-position: fixed;
+position: absolute;
 `
 
 const EditListHeader = styled.div`
@@ -137,7 +137,7 @@ font-size: 16px;
 
 const TextArea = styled.textarea`
 width: 70%;
-height: 400px;
+height: 350px;
 max-width: 100%;
 border: 1px solid black;
 border-radius: 5px;
@@ -154,7 +154,7 @@ const UpdateButton = styled.button`
     color: white;
     width: 20%;
     padding: 1% 6%;
-    margin-top: 2.5%;
+    margin: 2.5% 0;
     // margin-bottom: 5%;
     font-size: 1rem;
     font-weight: bold;
