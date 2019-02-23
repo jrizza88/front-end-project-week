@@ -2,17 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import NoteView from "./NoteView";
 import { Link } from "react-router-dom";
+import { Device } from "./Device";
 
-const NoteInfo = {
-  display: "flex",
-  flexDirection: "column",
-  backgroundColor: "white",
-  border: "solid 1px black",
-  width: "25%",
-  height: "200px",
-  margin: "2.5%",
-  padding: "1% 1.5%",
-};
+  const NoteInfo = styled.div`
+  display: flex;
+  flexDirection: column;
+  backgroundColor: white;
+  border: solid 1px black;
+  width: 25%;
+  height: 200px;
+  margin: 2.5%;
+  padding: 1% 1.5%;
+
+  @media (max-width: 900px) {
+    width: 40%;
+  };
+
+  @media ${Device.tablet} {
+    width: 60%;
+  }
+  `;
 
 
 
@@ -28,7 +37,7 @@ const NoteList = props => {
             let textbody = note.textBody;
                textbody = textbody.length > 110 ? textbody.substring(0, 110) + "...": textbody.substring(0, 110);
             return (
-              <div style={NoteInfo} key={note._id}>
+              <NoteInfo key={note._id}>
                 <StyledLink to={`/viewNote/${note._id}`} title={note.title}
                 textBody={note.textBody} _id={note._id} {...props} component={NoteView} >
                     <div>{note.tags}</div> 
@@ -36,7 +45,7 @@ const NoteList = props => {
                     <NoteBody>{textbody}</NoteBody>
                 </StyledLink>
 
-              </div>
+              </NoteInfo>
             );
           })}
         </NoteCard>
@@ -55,6 +64,10 @@ const NotePageContainer = styled.section`
   flex-direction: column;
   justify-content: space-around;
   width: 100%;
+
+  @media ${Device.tablet} {
+    margin-top: 30%;
+  }
 `;
 
 const WrapContent = styled.div`
@@ -69,6 +82,10 @@ const NoteListHeader = styled.div`
   font-size: 24px;
   font-weight: bold;
   text-decoration: none;
+
+  @media (max-width: 850px) {
+    margin-left: 10%;
+  }
 `;
 
 const NoteCard = styled.section`
@@ -79,6 +96,10 @@ const NoteCard = styled.section`
   flex-wrap: wrap;
   height: 20vh;
   text-decoration: none;
+
+  @media (max-width: 850px) {
+    width: 100%;
+  }
 `;
 
 const NoteTitle = styled.div`

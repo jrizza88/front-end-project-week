@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
+import { Device } from "./Device";
 
 const SideNav = props => {
 return (
@@ -24,6 +25,25 @@ const SideNavContainer = styled.section`
     max-width: 250px;
     width: 100%;
     height:100vh;
+
+    @media ${Device.tablet} {
+        max-width: 160px;
+    }
+
+    @media ${Device.laptopS} {
+        max-width: 200px;
+    }
+
+     @media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL}, ${Device.tablet}, (max-width: 630px),  {
+        flex-direction: row;
+        max-width: inherit;
+        justify-content: center;
+        padding-bottom: 10%;
+        height: 100px;
+        bottom: 85%;
+        right: 0;
+        margin-top: -2.5em;
+    }
 `;
 
 const ContentWrapper = styled.section`
@@ -31,6 +51,20 @@ display: flex;
 flex-grow;
 flex-direction: column;
 margin: 0 10%;
+
+@media ${Device.tablet} {
+    margin: 0 2%;
+}
+
+@media ${Device.laptopS} {
+    margin: 0 3%;
+}
+
+@media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL}, ${Device.tablet} {
+   margin-top: 4%;
+   flex-direction: row;
+   justify-content: space-between;
+}
 `;
 
 const SideHeader = styled.h1`
@@ -39,6 +73,10 @@ text-decoration: none;
 &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
 }
+
+@media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL}, ${Device.tablet} {
+    font-size: 2rem;
+ }
 `;
 
 const ViewNotesButton = styled.button`
@@ -54,6 +92,13 @@ const ViewNotesButton = styled.button`
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
     }
+
+    @media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL}, ${Device.tablet} {
+        width: 50%;
+        align-items: center;
+        margin-top: 5%;
+        padding: 5% 3% 10% 3%;
+     }
 `;
 const CreateNewNoteButton = styled.button`
     display: flex;
@@ -65,6 +110,13 @@ const CreateNewNoteButton = styled.button`
     margin-top: 5%;
     font-size: 1rem;
     font-weight: bold;
+
+    @media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL}, ${Device.tablet} {
+        width: 50%;
+        margin-bottom: inherit;
+        align-items: center;
+        padding-bottom: 10%;
+     }
 `;
 
 const StyledLink = styled(Link)`

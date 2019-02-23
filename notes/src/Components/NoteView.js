@@ -3,6 +3,7 @@ import styled from "styled-components";
 import EditNote from './EditNote';
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
+import {Device} from './Device';
 
 class NoteView extends Component {
   constructor(props) {
@@ -108,6 +109,10 @@ max-width: 1000px;
 const SectionContainer = styled.div`
 display: flex;
 flex-direction: column;
+
+@media ${Device.tablet} {
+  margin-top: 30%;
+}
 `
 
 
