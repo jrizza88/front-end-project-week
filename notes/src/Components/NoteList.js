@@ -4,26 +4,6 @@ import NoteView from "./NoteView";
 import { Link } from "react-router-dom";
 import { Device } from "./Device";
 
-  const NoteInfo = styled.div`
-  display: flex;
-  flexDirection: column;
-  backgroundColor: white;
-  border: solid 1px black;
-  width: 25%;
-  height: 200px;
-  margin: 2.5%;
-  padding: 1% 1.5%;
-
-  @media (max-width: 900px) {
-    width: 40%;
-  };
-
-  @media ${Device.tablet} {
-    width: 60%;
-  }
-  `;
-
-
 
 const NoteList = props => {
 
@@ -104,10 +84,29 @@ const NoteCard = styled.section`
   flex-wrap: wrap;
   height: 20vh;
   text-decoration: none;
-
   @media (max-width: 850px) {
     width: 100%;
   }
+`;
+
+
+const NoteInfo = styled.div`
+display: flex;
+flexDirection: column;
+background: lightgoldenrodyellow;
+border: solid 1px black;
+width: 25%;
+height: 200px;
+margin: 2.5%;
+padding: 1% 1.5%;
+
+@media (max-width: 900px) {
+  width: 40%;
+};
+
+@media ${Device.tablet} {
+  width: 60%;
+}
 `;
 
 const NoteTitle = styled.div`

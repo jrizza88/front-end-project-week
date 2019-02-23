@@ -37,8 +37,6 @@ class MainView extends Component {
       });
   }
 
-  
-
   viewOneNote = _id => {
     axios
       .get(`https://fe-notes.herokuapp.com/note/get/${_id}`)
