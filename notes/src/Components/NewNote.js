@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Device } from './Device';
 
 // const home = props => {
 //     props.history.push('/')
@@ -82,6 +83,10 @@ justify-content: space-around;
 margin-left: 10%;
 width: 80%;
 position: absolute;
+
+@media ${Device.tablet} {
+    margin-top: 30%;
+  }
 `;
 
 const CreateHeader = styled.div`
