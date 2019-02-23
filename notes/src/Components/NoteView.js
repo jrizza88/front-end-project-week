@@ -115,7 +115,6 @@ flex-direction: column;
 }
 `
 
-
 const NoteContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -124,6 +123,17 @@ align-items: flex-start;
 width: 100%;
 min-width: 700px
 margin-top: 5%;
+
+@media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL}, ${Device.tablet}{
+  min-width: inherit;
+  margin-left: -25%;
+}
+
+@media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL} {
+  margin-top: 75%;
+  justify-content: center;
+  align-items: center;
+}
 `;
 
 const ButtonDiv = styled.div`

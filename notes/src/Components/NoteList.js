@@ -74,6 +74,10 @@ const WrapContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
+
+  @media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL} {
+    width: 100%;
+  }
 `;
 
 const NoteListHeader = styled.div`
@@ -85,6 +89,10 @@ const NoteListHeader = styled.div`
 
   @media (max-width: 850px) {
     margin-left: 10%;
+  }
+
+  @media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL} {
+    margin-left: inherit;
   }
 `;
 

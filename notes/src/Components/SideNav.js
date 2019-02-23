@@ -44,6 +44,12 @@ const SideNavContainer = styled.section`
         right: 0;
         margin-top: -2.5em;
     }
+
+    @media (max-width: 500px) {
+        height: 80px;
+        margin-top: -2.5em;
+        bottom: 90%;
+    }
 `;
 
 const ContentWrapper = styled.section`
@@ -74,8 +80,13 @@ text-decoration: none;
     text-decoration: none;
 }
 
-@media ${Device.mobileS}, ${Device.mobileM}, ${Device.mobileL}, ${Device.tablet} {
+@media ${Device.mobileL}, ${Device.tablet} {
     font-size: 2rem;
+ }
+
+ @media ${Device.mobileS}, ${Device.mobileM} {
+    font-size: 1rem;
+    margin-bottom: 3%;
  }
 `;
 
@@ -97,7 +108,14 @@ const ViewNotesButton = styled.button`
         width: 50%;
         align-items: center;
         margin-top: 5%;
-        padding: 5% 3% 10% 3%;
+        padding: 5% 4% 10% 3%;
+     }
+
+     @media ${Device.mobileS}, ${Device.mobileM} {
+        width: 40%;
+        align-items: center;
+        margin-top: 5%;
+        padding: 3% 2% 6% 2%;
      }
 `;
 const CreateNewNoteButton = styled.button`
@@ -116,6 +134,14 @@ const CreateNewNoteButton = styled.button`
         margin-bottom: inherit;
         align-items: center;
         padding-bottom: 10%;
+     }
+
+
+     @media ${Device.mobileS}, ${Device.mobileM} {
+        width: 40%;
+        align-items: center;
+        margin-top: 5%;
+        padding: 3% 2% 6% 2%;
      }
 `;
 
