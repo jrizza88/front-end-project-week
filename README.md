@@ -1,6 +1,9 @@
 #Trello url
 https://trello.com/b/MfrU9qXn/lambda-notes
 
+#App url
+https://jamar-notes.netlify.com/
+
 # Front End Project Week
 
 This week you will be building a minimum viable product (MVP) for a note taking app called "Lambda Notes."
